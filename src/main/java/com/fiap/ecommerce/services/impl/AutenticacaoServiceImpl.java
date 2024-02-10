@@ -10,6 +10,7 @@ import com.fiap.ecommerce.repositories.UserRepository;
 import com.fiap.ecommerce.services.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,11 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        return userRepository.findByLogin(login);
+        Usuario usuario = userRepository.findByLogin(login);
+        if (usuario == null) {
+            throw new UsernameNotFoundException("Usuário não encontrado com login: " + login);
+        }
+        return new User(usuario.getLogin(), usuario.getPassword(), usuario.getAuthorities());
     }
 
     @Override

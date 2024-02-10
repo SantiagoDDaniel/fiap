@@ -19,7 +19,7 @@ public class AuthenticationController {
 
     @PostMapping
     public ResponseEntity<String> auth(@RequestBody AuthDto authDto) {
-        var usuarioAutenticationToken = new UsernamePasswordAuthenticationToken(authDto.login(), authDto.senha());
+        var usuarioAutenticationToken = new UsernamePasswordAuthenticationToken(authDto.login(), authDto.password());
         authenticationManager.authenticate(usuarioAutenticationToken);
         return ResponseEntity.ok(autenticacaoService.getToken(authDto));
     }
