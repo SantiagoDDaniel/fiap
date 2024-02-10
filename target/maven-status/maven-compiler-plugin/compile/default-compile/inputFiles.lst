@@ -1,0 +1,17 @@
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/dtos/AuthDto.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/controllers/AuthenticationController.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/exceptions/ApiError.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/controllers/UserController.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/enums/RoleEnum.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/services/impl/AutenticacaoServiceImpl.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/services/AutenticacaoService.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/services/impl/UserServiceImpl.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/services/UserService.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/config/SecurityFilter.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/exceptions/ApplicationResourceAdvice.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/dtos/UserDto.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/models/Usuario.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/config/SecurityConfiguration.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/EcommerceApplication.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/repositories/UserRepository.java
+/home/daniel/fase5/fiap/src/main/java/com/fiap/ecommerce/exceptions/BusinessException.java
