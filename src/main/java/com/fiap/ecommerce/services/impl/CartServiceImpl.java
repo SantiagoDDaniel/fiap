@@ -35,7 +35,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void addItemToCart(Long productId, int quantity) {
-
         Usuario user = userRepository.findById(getLoggedInUserId())
                 .orElseThrow(() -> new RuntimeException("Não foi possivel encontrar o usuario com o ID: " + getLoggedInUserId()));
         Item product = itemRepository.findById(productId)
@@ -48,17 +47,16 @@ public class CartServiceImpl implements CartService {
                 .filter(item -> item.getProduct().getId().equals(productId))
                 .findFirst();
 
-        if (existingItem.isPresent()) {
-            CartItem cartItem = existingItem.get();
+        existingItem.ifPresentOrElse(cartItem -> {
             cartItem.setQuantity(cartItem.getQuantity() + quantity);
             cartItemRepository.save(cartItem);
-        } else {
+        }, () -> {
             CartItem newItem = new CartItem();
             newItem.setProduct(product);
             newItem.setQuantity(quantity);
             cart.getItems().add(newItem);
             cartItemRepository.save(newItem);
-        }
+        });
     }
 
     @Transactional
@@ -76,7 +74,7 @@ public class CartServiceImpl implements CartService {
     private Long getLoggedInUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()) {
-            new RuntimeException("Usuário não autenticado");
+            throw new RuntimeException("Usuário não autenticado");
         }
         Object principal = authentication.getPrincipal();
         if (principal instanceof UserDetails) {
