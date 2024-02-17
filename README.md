@@ -1,24 +1,32 @@
-# Projeto E-commerce com Spring Boot para a fase 5 da pós-graduação FIAP
+# Projeto E-commerce com Spring Boot
 
-Este projeto de demonstração E-commerce é construído com o framework Spring Boot, aproveitando várias tecnologias e bibliotecas poderosas para fornecer uma base sólida para a construção de uma aplicação de comércio eletrônico. A
-lém das funcionalidades básicas de e-commerce, este projeto inclui funcionalidades específicas de Login e Registro de Usuário, Gestão de Itens, Carrinho de Compras e Simulação de Pagamentos.
+## Visão Geral
+Este projeto de E-commerce é desenvolvido utilizando o Spring Boot e demonstra a aplicação de diversas tecnologias e bibliotecas do ecossistema Spring. Ele faz parte da fase 5 da pós-graduação da FIAP, focando em funcionalidades essenciais para um sistema de comércio eletrônico, incluindo Login/Registro de Usuários, Gestão de Itens, Carrinho de Compras e Simulação de Pagamentos.
 
-## Funcionalidades
-
-- **Login e Registro de Usuário**: Utilizando as ferramentas do Spring Security, os usuários podem se cadastrar e fazer login no sistema, garantindo a autenticação e autorização de forma segura.
-
-- **Gestão de Itens**: Através de uma tela dedicada, usuários administradores têm acesso ao controle de cadastro e manutenção de itens, incluindo a gestão de preços.
-
-- **Carrinho de Compras**: Os usuários podem adicionar e remover itens de um carrinho de compras persistente, que é associado ao usuário logado, melhorando a experiência de compra.
-
-- **Pagamentos (Simulação)**: Implementação de uma tela que simula o processo de pagamento, permitindo aos usuários visualizar os itens no carrinho e concluir uma compra fictícia, sem a necessidade de integração com formas de pagamento reais.
+## Funcionalidades Principais
+- **Login e Registro de Usuário**: Segurança com Spring Security para autenticação e autorização.
+- **Gestão de Itens**: Interface administrativa para gerenciamento de itens disponíveis para venda.
+- **Carrinho de Compras**: Permite aos usuários adicionar e remover itens, com persistência de dados associada ao usuário logado.
+- **Pagamentos (Simulação)**: Uma tela de simulação de pagamento para concluir a compra sem necessidade de integração real com serviços de pagamento.
 
 ## Tecnologias Utilizadas
+- **Spring Framework**: Utilizando Spring Boot, Spring Data JPA, Spring Security, e Spring Web.
+- **Lombok**: Para redução de código boilerplate em entidades Java e DTOs.
+- **H2 Database**: Banco de dados em memória para facilitar testes e desenvolvimento.
+- **Java JWT**: Suporte para autenticação via tokens JWT.
 
-- **Spring Boot**: Facilita a criação de aplicações stand-alone baseadas em Spring com configurações mínimas.
-- **Spring Data JPA**: Para integração com bancos de dados usando Java Persistence API (JPA).
-- **Spring Security**: Para autenticação e autorização robustas, garantindo a segurança da aplicação.
-- **Spring Web**: Para construir aplicações web, incluindo aplicações RESTful usando Spring MVC.
-- **Lombok**: Para reduzir o boilerplate code em objetos Java, como getters, setters, e construtores.
-- **H2 Database**: Um banco de dados em memória para prototipagem e testes.
-- **Java JWT**: Para gerar e validar tokens JWT, facilitando a implementação de autenticação baseada em tokens.
+## API Gateway
+O projeto inclui um API Gateway configurado com Spring Cloud Gateway, facilitando a comunicação entre os clientes e os microserviços através de um ponto de entrada unificado.
+
+### Configuração
+- **Porta do Servidor**: 8080, modificável via `application.properties`.
+- **Nome da Aplicação**: Configurado como `gateway-service`.
+- **Integração com Eureka**: Para descoberta de serviços dinâmica.
+- **Configuração de Rotas**: Automatiza a descoberta e o roteamento para microserviços registrados no Eureka.
+
+### Uso
+1. Inicie o servidor Eureka.
+2. Execute os microserviços de acordo com as rotas configuradas.
+3. Inicie a aplicação `gateway-service`.
+
+As requisições para `localhost:8080/{service_path}` serão redirecionadas para os microserviços correspondentes, permitindo uma arquitetura limpa e eficiente.
