@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"com.fiap.ecommerce.gatewayservice", "com.fiap.ecommerce.auth"})
 public class GatewayServiceApplication {
 
 	public static void main(String[] args) {
@@ -26,6 +25,8 @@ public class GatewayServiceApplication {
 						.uri("lb://cart-service"))
 				.route(r -> r.path("/orders/**")
 						.uri("lb://order-service"))
+				.route(r -> r.path("/users/**")
+						.uri("lb://user-service"))
 				.build();
 	}
 

@@ -18,11 +18,11 @@
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
-		<dependency>
+<!--		<dependency>
 			<groupId>com.fiapecommerce</groupId>
 			<artifactId>security-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

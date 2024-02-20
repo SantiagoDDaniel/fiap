@@ -1,7 +1,5 @@
 package com.fiap.ecommerce.auth.controller;
 
-import com.fiap.ecommerce.auth.config.JwtResponse;
-import com.fiap.ecommerce.auth.config.JwtTokenUtil;
 import com.fiap.ecommerce.auth.dto.AuthDto;
 import com.fiap.ecommerce.auth.dto.JwtRequest;
 import com.fiap.ecommerce.auth.service.AutenticacaoService;
@@ -18,30 +16,16 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
-    private AutenticacaoServiceImpl autenticacaoService;
-
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private AutenticacaoService autenticacaoService;
 
     public AuthenticationController() {
     }
 
-
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
-        final UserDetails userDetails = autenticacaoService.loadUserByUsername(authenticationRequest.getUsername());
-
-        final String token = jwtTokenUtil.generateToken(userDetails);
-
-        return ResponseEntity.ok(new JwtResponse(token));
-    }
-
-    private void authenticate(String username, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+    @PostMapping
+    public ResponseEntity<String> auth(@RequestBody AuthDto authDto) {
+        UsernamePasswordAuthenticationToken usuarioAutenticationToken = new UsernamePasswordAuthenticationToken(authDto.login(), authDto.senha());
+        this.authenticationManager.authenticate(usuarioAutenticationToken);
+        return ResponseEntity.ok(this.autenticacaoService.getToken(authDto));
     }
 }
