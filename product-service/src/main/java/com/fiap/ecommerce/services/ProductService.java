@@ -55,12 +55,10 @@ public class ProductService {
 
     @KafkaListener(topics = "product-details-request", groupId = "group-3")
     public void receiveProductDetailsRequest(Long productId) throws JsonProcessingException {
-        // Retrieve the product details from the database using JPA or Hibernate
         Product product = this.getProductById(productId);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(product);
 
-        // Send the product details back to the order service using Kafka
         kafkaTemplate.send("product-details-response", json);
     }
 }
