@@ -1,5 +1,6 @@
 package com.fiap.ecommerce.entities;
 
+import com.fiap.ecommerce.dto.ProductDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,4 +34,15 @@ public class Product {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public Product(ProductDto productDto){
+        this.name = productDto.name();
+        this.description = productDto.description();
+        this.price = productDto.price();
+        this.category = productDto.category();
+        this.stockQuantity = productDto.stockQuantity();
+        this.imageUrl = productDto.imageUrl();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
 }

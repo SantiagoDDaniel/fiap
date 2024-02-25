@@ -1,6 +1,8 @@
 package com.fiap.ecommerce.controller;
+import com.fiap.ecommerce.dto.ProductDto;
 import com.fiap.ecommerce.entities.Product;
 import com.fiap.ecommerce.services.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +28,12 @@ public class ProductController {
     }
 
     @PostMapping("")
-    public Product createProduct(@RequestBody Product product) {
+    public Product createProduct(@RequestBody @Valid ProductDto product) {
         return productService.createProduct(product);
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    public Product updateProduct(@PathVariable Long id, @RequestBody @Valid ProductDto product) {
         return productService.updateProduct(id, product);
     }
 

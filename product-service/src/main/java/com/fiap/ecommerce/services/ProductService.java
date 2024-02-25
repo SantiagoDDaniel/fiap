@@ -1,6 +1,7 @@
 package com.fiap.ecommerce.services;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fiap.ecommerce.dto.ProductDto;
 import com.fiap.ecommerce.entities.Product;
 import com.fiap.ecommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,23 +31,23 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
-    public Product createProduct(Product product) {
+    public Product createProduct(ProductDto productDto) {
+        Product product = new Product(productDto);
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Long id, Product product) {
+    public Product updateProduct(Long id, ProductDto product) {
         Product existingProduct = getProductById(id);
         if (existingProduct == null) {
             return null;
         }
-        existingProduct.setName(product.getName());
-        existingProduct.setDescription(product.getDescription());
-        existingProduct.setPrice(product.getPrice());
-        existingProduct.setCategory(product.getCategory());
-        existingProduct.setUpdatedAt(product.getUpdatedAt());
-        existingProduct.setCreatedAt(product.getCreatedAt());
-        existingProduct.setImageUrl(product.getImageUrl());
-        existingProduct.setStockQuantity(product.getStockQuantity());
+        existingProduct.setName(product.name());
+        existingProduct.setDescription(product.description());
+        existingProduct.setPrice(product.price());
+        existingProduct.setCategory(product.category());
+        existingProduct.setUpdatedAt(LocalDateTime.now());
+        existingProduct.setImageUrl(product.imageUrl());
+        existingProduct.setStockQuantity(product.stockQuantity());
         return productRepository.save(existingProduct);
     }
 
