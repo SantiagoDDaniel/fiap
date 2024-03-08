@@ -30,3 +30,29 @@ O projeto inclui um API Gateway configurado com Spring Cloud Gateway, facilitand
 3. Inicie a aplicação `gateway-service`.
 
 As requisições para `localhost:8080/{service_path}` serão redirecionadas para os microserviços correspondentes, permitindo uma arquitetura limpa e eficiente.
+
+## Regist an user
+
+```
+curl --location --request POST 'http://localhost:8080/auth/register' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=7CE91EE75A65277C0DCB6C5736C5DF5D' \
+--data-raw '{
+    "name":"teste",
+    "password":"teste",
+    "email":"teste@gmail.com"
+}'
+
+```
+
+## Generate token
+
+```
+curl --location --request POST 'http://localhost:8080/auth/token' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JSESSIONID=7CE91EE75A65277C0DCB6C5736C5DF5D' \
+--data-raw '{
+    "username":"teste",
+    "password":"teste"
+}'
+```

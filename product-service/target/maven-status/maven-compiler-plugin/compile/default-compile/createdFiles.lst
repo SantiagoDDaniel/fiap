@@ -1,5 +1,6 @@
-com/fiap/ecommerce/entities/Product.class
 com/fiap/ecommerce/controller/ProductController.class
+com/fiap/ecommerce/dto/ProductDto.class
+com/fiap/ecommerce/services/ProductService.class
+com/fiap/ecommerce/entities/Product.class
 com/fiap/ecommerce/repositories/ProductRepository.class
 com/fiap/ecommerce/ProductServiceApp.class
-com/fiap/ecommerce/services/ProductService.class

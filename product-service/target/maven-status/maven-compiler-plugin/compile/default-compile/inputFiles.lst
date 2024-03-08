@@ -1,5 +1,6 @@
-/home/daniel/fase5/fiap/product-service/src/main/java/com/fiap/ecommerce/entities/Product.java
-/home/daniel/fase5/fiap/product-service/src/main/java/com/fiap/ecommerce/controller/ProductController.java
-/home/daniel/fase5/fiap/product-service/src/main/java/com/fiap/ecommerce/services/ProductService.java
-/home/daniel/fase5/fiap/product-service/src/main/java/com/fiap/ecommerce/ProductServiceApp.java
-/home/daniel/fase5/fiap/product-service/src/main/java/com/fiap/ecommerce/repositories/ProductRepository.java
+/Users/santiago/fiap/product-service/src/main/java/com/fiap/ecommerce/controller/ProductController.java
+/Users/santiago/fiap/product-service/src/main/java/com/fiap/ecommerce/repositories/ProductRepository.java
+/Users/santiago/fiap/product-service/src/main/java/com/fiap/ecommerce/dto/ProductDto.java
+/Users/santiago/fiap/product-service/src/main/java/com/fiap/ecommerce/entities/Product.java
+/Users/santiago/fiap/product-service/src/main/java/com/fiap/ecommerce/ProductServiceApp.java
+/Users/santiago/fiap/product-service/src/main/java/com/fiap/ecommerce/services/ProductService.java
