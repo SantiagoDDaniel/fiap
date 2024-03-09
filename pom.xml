@@ -12,5 +12,6 @@
         <module>gateway-service</module>
         <module>configuration-service</module>
         <module>product-service</module>
+        <module>swagger-aggregator</module>
     </modules>
 </project>

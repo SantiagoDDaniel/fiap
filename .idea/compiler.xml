@@ -13,12 +13,14 @@
         <module name="security-service" />
         <module name="product-service" />
         <module name="order-service" />
+        <module name="swagger-aggregator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="configuration-server" target="17" />
       <module name="eureka" target="17" />
       <module name="gestao-service" target="17" />
+      <module name="swagger-service" target="17" />
       <module name="user-service" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -34,6 +36,7 @@
       <module name="order-service" options="-parameters" />
       <module name="product-service" options="-parameters" />
       <module name="security-service" options="-parameters" />
+      <module name="swagger-aggregator" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>
