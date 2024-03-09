@@ -13,9 +13,18 @@ public class RouteValidator {
             "/auth/token",
             "/eureka"
     );
+    public static final List<String> openApiEndpointsAdmin = List.of(
+            "/auth/delete"
+    );
 
     public Predicate<ServerHttpRequest> isSecured =
             request -> openApiEndpoints
                     .stream()
                     .noneMatch(uri -> request.getURI().getPath().contains(uri));
+
+
+    public Predicate<ServerHttpRequest> isAdminRoute =
+            request -> openApiEndpointsAdmin
+                    .stream()
+                    .anyMatch(uri -> request.getURI().getPath().contains(uri));
 }

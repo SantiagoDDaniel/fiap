@@ -27,14 +27,20 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        ServerHttpRequest request = exchange.getRequest();
+
         if (validator.isSecured.test(exchange.getRequest())) {
             String token = extractAndValidateToken(exchange.getRequest());
 
             if (token == null || token.isEmpty()) {
                 throw new AuthenticationException("Invalid or missing token");
             }
-            try {
-                jwtUtil.validateToken(token);
+            try { jwtUtil.validateToken(token);
+                String userRole = jwtUtil.getUserRoleFromToken(token);
+
+                if (validator.isAdminRoute.test(request) && !userRole.equals("ROLE_ADMIN")) {
+                    throw new AuthenticationException("Unauthorized access to application");
+                }
             } catch (Exception e) {
                 System.out.println("Invalid access...!");
                 throw new AuthenticationException("Unauthorized access to application");

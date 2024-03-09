@@ -4,6 +4,9 @@ import com.fiap.ecommerce.auth.dto.AuthRequest;
 import com.fiap.ecommerce.auth.model.UserCredential;
 import com.fiap.ecommerce.auth.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,23 +23,31 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
-    public String addNewUser(@RequestBody UserCredential user) {
-        return service.saveUser(user);
+    public ResponseEntity<String> addNewUser(@RequestBody UserCredential user) {
+        service.saveUser(user);
+        return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
     }
 
     @PostMapping("/token")
-    public String getToken(@RequestBody AuthRequest authRequest) {
+    public ResponseEntity<String> getToken(@RequestBody AuthRequest authRequest) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authenticate.isAuthenticated()) {
-            return service.generateToken(authRequest.getUsername());
+            return ResponseEntity.ok(service.generateToken(authenticate));
         } else {
-            throw new RuntimeException("invalid access");
+            return new ResponseEntity<>("Invalid access", HttpStatus.UNAUTHORIZED);
         }
     }
 
     @GetMapping("/validate")
-    public String validateToken(@RequestParam("token") String token) {
+    public ResponseEntity<String> validateToken(@RequestParam("token") String token) {
         service.validateToken(token);
-        return "Token is valid";
+        return ResponseEntity.ok("Token is valid");
+    }
+
+    @DeleteMapping("/delete")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<String> deleteUser(@RequestParam("userId") int userId) {
+        service.deleteUserbyId(userId);
+        return new ResponseEntity<>("User deleted successfully", HttpStatus.NO_CONTENT);
     }
 }
