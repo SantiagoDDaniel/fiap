@@ -19,7 +19,7 @@ public class GatewayConfig {
                         .uri("lb://order-service"))
                 .route(r -> r.path("/auth/**")
                         .uri("lb://security-service"))
-                .route(r -> r.path("/swagger-ui.html", "/v3/api-docs", "/v3/api-docs/**", "/swagger-ui/**")
+                .route(r -> r.path("/api-docs/**")
                         .uri("lb://swagger-aggregator"))
                 .build();
     }
