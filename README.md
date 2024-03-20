@@ -56,3 +56,5 @@ curl --location --request POST 'http://localhost:8080/auth/token' \
     "password":"teste"
 }'
 ```
+
+teste
