@@ -12,10 +12,12 @@ import java.util.List;
 @RequestMapping("/carts")
 public class CartController {
     private final CartService cartService;
+
     @Autowired
     public CartController(CartService cartService) {
         this.cartService = cartService;
     }
+
     @GetMapping("")
     public List<Cart> getAllCarts() {
         return cartService.getAllCarts();
@@ -24,6 +26,11 @@ public class CartController {
     @GetMapping("/{id}")
     public Cart getCartById(@PathVariable Long id) {
         return cartService.getCartById(id);
+    }
+
+    @GetMapping("/{userId}")
+    public Cart getLastCartByUserId(@PathVariable Long userId) {
+        return cartService.getLastCartByUserId(userId);
     }
 
     @PostMapping("")

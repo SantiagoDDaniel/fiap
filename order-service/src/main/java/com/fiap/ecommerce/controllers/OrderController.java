@@ -4,6 +4,8 @@ import com.fiap.ecommerce.components.OrderDetails;
 import com.fiap.ecommerce.entities.Order;
 import com.fiap.ecommerce.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,12 @@ public class OrderController {
     @PostMapping("")
     public Order createOrder(@RequestBody Order product) {
         return orderService.createOrder(product);
+    }
+
+    @PostMapping("/payment-order")
+    public ResponseEntity<HttpStatus> paymentOrder(@RequestBody Order product) {
+         orderService.deleteOrder(product.getOrderID());
+         return (ResponseEntity<HttpStatus>) ResponseEntity.noContent();
     }
 
     @PutMapping("/{id}")

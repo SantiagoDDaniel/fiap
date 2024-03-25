@@ -19,6 +19,8 @@ public class Cart {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
+        private Long idUser;
+
         private Double totalPrice;
 
         private String status;

@@ -5,7 +5,9 @@ import com.fiap.ecommerce.cartservice.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class CartService {
@@ -17,6 +19,13 @@ public class CartService {
 
     public List<Cart> getAllCarts() {
         return cartRepository.findAll();
+    }
+
+    public Cart getLastCartByUserId(Long userId) {
+        return cartRepository.findCartsByUserId(userId)
+                .stream()
+                .max(Comparator.comparing(Cart::getCreatedAt))
+                .orElseThrow(() -> new NoSuchElementException("No cart found for user ID " + userId));
     }
 
     public Cart getCartById(Long id) {
