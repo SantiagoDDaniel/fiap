@@ -26,7 +26,7 @@ public class AuthConfig {
         return new CustomUserDetailsService();
     }
 
-    private static final String[] AUTH_URLS = {"/auth/register", "/auth/token", "/auth/validate"};
+    private static final String[] AUTH_URLS = {"/auth/register", "/auth/token", "/auth/validate", "/swagger-ui/**", "swagger-resources/**", "/v3/api-docs/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
