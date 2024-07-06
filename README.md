@@ -12,6 +12,7 @@
 
 ## Fase 5 (03/01/2024 até 25/03/2024)
 
+
 **Objetivos**
 
  Neste desafio, vamos desenvolver um sistema de e-commerce que permita aos usuários realizarem as seguintes operações:
